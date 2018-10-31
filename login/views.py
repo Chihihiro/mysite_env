@@ -1,10 +1,17 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from login.models import *
+from login import models
 # Create your views here.
 # from .models import *
 from login import forms
 # from django import forms
+import hashlib
+
+def hash_code(s, salt='mysite'):# 加点盐
+    h = hashlib.sha256()
+    s += salt
+    h.update(s.encode())  # update方法只接收bytes类型
+    return h.hexdigest()
 
 def index(request):
     pass
